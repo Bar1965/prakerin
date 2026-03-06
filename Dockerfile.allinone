@@ -1,0 +1,43 @@
+FROM php:8.1-apache
+
+# ── 1. Install MySQL Server + Supervisor + utils ──────────────────────────────
+RUN apt-get update && apt-get install -y \
+    default-mysql-server \
+    supervisor \
+    libzip-dev zip unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# ── 2. PHP extensions ─────────────────────────────────────────────────────────
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip
+
+# ── 3. Apache config ──────────────────────────────────────────────────────────
+RUN a2enmod rewrite
+RUN echo '<Directory /var/www/html>\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>' > /etc/apache2/conf-available/siprakerin.conf && \
+    a2enconf siprakerin
+
+# ── 4. PHP config ─────────────────────────────────────────────────────────────
+RUN echo "upload_max_filesize = 10M\npost_max_size = 10M\nmax_execution_time = 60\ndate.timezone = Asia/Jakarta" \
+    > /usr/local/etc/php/conf.d/siprakerin.ini
+
+# ── 5. App files ──────────────────────────────────────────────────────────────
+COPY . /var/www/html/
+RUN mkdir -p /var/www/html/uploads/absensi /var/www/html/uploads/profil && \
+    chown -R www-data:www-data /var/www/html/uploads && \
+    chmod -R 755 /var/www/html/uploads
+
+# ── 6. Copy SQL init scripts ──────────────────────────────────────────────────
+COPY init-db/ /docker-initdb/
+
+# ── 7. Supervisor config (runs both MySQL + Apache) ───────────────────────────
+COPY supervisord.conf /etc/supervisor/conf.d/siprakerin.conf
+
+# ── 8. Startup script ─────────────────────────────────────────────────────────
+COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]

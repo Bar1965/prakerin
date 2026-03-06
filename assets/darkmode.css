@@ -1,0 +1,427 @@
+/*
+ * SiPrakerin — Dark Mode
+ * Berlaku untuk semua role: admin, guru, instruktur, siswa
+ * Diaktifkan dengan: <html data-theme="dark">
+ */
+
+/* ══════════════════════════════════════════════════════════════
+   1. CSS VARIABLES OVERRIDE
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] {
+  /* Universal */
+  --bg:          #0f172a;
+  --bg-body:     #0f172a;
+  --surface:     #1e293b;
+  --text:        #f1f5f9;
+  --text-main:   #f1f5f9;
+  --text-muted:  #94a3b8;
+  --muted:       #94a3b8;
+  --border:      #334155;
+  --r:           12px;
+  --primary-glow: rgba(74,222,128,.12);
+
+  /* Green palette overrides */
+  --teal-pale:    #0d2b1a;
+  --teal-light:   #0d2b1a;
+  --green-50:     #0d2b1a;
+  --green-100:    #122e1b;
+  --green-200:    #15803d40;
+
+  /* Siswa */
+  --ink:    #f1f5f9;
+  --ink-2:  #1e293b;
+  --slate:  #94a3b8;
+  --mist:   #64748b;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   2. BODY & GLOBAL
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] body {
+  background: #0f172a !important;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] a { color: inherit; }
+
+/* ══════════════════════════════════════════════════════════════
+   3. TOPBAR
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .topbar {
+  background: #1e293b !important;
+  border-bottom-color: #334155 !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,.3) !important;
+}
+html[data-theme="dark"] .topbar-title { color: #f1f5f9 !important; }
+html[data-theme="dark"] .topbar-date {
+  background: #263548 !important;
+  border-color: #334155 !important;
+  color: #94a3b8 !important;
+}
+html[data-theme="dark"] .topbar-pill {
+  background: #0d2b1a !important;
+  border-color: #15803d40 !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .topbar-chip {
+  background: #263548 !important;
+  border-color: #334155 !important;
+  color: #94a3b8 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   4. SIDEBAR
+   Sidebar dark-green (admin/instruktur/siswa) — minimal tweaks
+   Sidebar putih (guru) — penuh overhaul
+══════════════════════════════════════════════════════════════ */
+
+/* Guru sidebar (white by default) */
+html[data-theme="dark"] .sidebar {
+  background: #162032 !important;
+  border-right-color: #334155 !important;
+}
+html[data-theme="dark"] .sidebar-header {
+  border-bottom-color: #334155 !important;
+  background: #162032 !important;
+}
+html[data-theme="dark"] .sidebar-header .brand-icon { background: transparent; }
+
+html[data-theme="dark"] .menu-item {
+  color: rgba(255,255,255,.5) !important;
+}
+html[data-theme="dark"] .menu-item:hover {
+  background: rgba(255,255,255,.07) !important;
+  color: rgba(255,255,255,.9) !important;
+}
+html[data-theme="dark"] .menu-item.active {
+  background: rgba(21,128,61,.18) !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .menu-label { color: rgba(255,255,255,.25) !important; }
+
+html[data-theme="dark"] .sidebar-footer {
+  border-top-color: #334155 !important;
+  background: #162032 !important;
+}
+html[data-theme="dark"] .sidebar-footer > div:first-child {
+  background: rgba(255,255,255,.05) !important;
+}
+html[data-theme="dark"] .sidebar-footer .sidebar-username { color: rgba(255,255,255,.85) !important; }
+html[data-theme="dark"] .sidebar-footer .sidebar-role     { color: rgba(255,255,255,.3) !important; }
+html[data-theme="dark"] .sidebar-footer a.menu-item[style*="ef4444"] { color: rgba(248,113,113,.7) !important; }
+
+/* Guru sidebar user block (inline styles) */
+html[data-theme="dark"] .sidebar-menu + .sidebar-footer > div[style*="background:#f0fdf4"],
+html[data-theme="dark"] .sidebar-menu + .sidebar-footer > div[style*="background: #f0fdf4"] {
+  background: rgba(255,255,255,.05) !important;
+}
+html[data-theme="dark"] .sidebar-menu + .sidebar-footer > div > div:not([style*="background"]) {
+  color: rgba(255,255,255,.85) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   5. CARDS
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .si-card,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .stat-b,
+html[data-theme="dark"] .stat-box,
+html[data-theme="dark"] .form-card,
+html[data-theme="dark"] .table-card,
+html[data-theme="dark"] .tl-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .stat-card::before { opacity: .7; }
+html[data-theme="dark"] .stat-b .l,
+html[data-theme="dark"] .stat-lbl          { color: #64748b !important; }
+
+html[data-theme="dark"] .si-card-header,
+html[data-theme="dark"] .form-card-header,
+html[data-theme="dark"] .table-card-header { border-bottom-color: #334155 !important; }
+
+html[data-theme="dark"] .form-card-header { color: #f1f5f9 !important; }
+html[data-theme="dark"] .table-card-header h5 { color: #f1f5f9 !important; }
+html[data-theme="dark"] .form-card-body { background: #1e293b; }
+
+/* ══════════════════════════════════════════════════════════════
+   6. TABLES
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .tbl thead th,
+html[data-theme="dark"] .si-table thead th {
+  background: #162032 !important;
+  color: #64748b !important;
+  border-bottom-color: #334155 !important;
+}
+html[data-theme="dark"] .tbl tbody td,
+html[data-theme="dark"] .si-table tbody td {
+  border-bottom-color: #263548 !important;
+  color: #e2e8f0;
+}
+html[data-theme="dark"] .tbl tbody tr:hover td,
+html[data-theme="dark"] .si-table tbody tr:hover td {
+  background: #263548 !important;
+}
+html[data-theme="dark"] .tbl tbody tr:last-child td,
+html[data-theme="dark"] .si-table tbody tr:last-child td { border-bottom: none; }
+
+/* Bootstrap tables (admin/siswa) */
+html[data-theme="dark"] .table {
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+html[data-theme="dark"] .table thead th {
+  background: #162032 !important;
+  color: #64748b !important;
+  border-color: #334155 !important;
+}
+html[data-theme="dark"] .table tbody tr:hover { background: #263548 !important; }
+html[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(255,255,255,.02) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   7. FORMS
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] input[type="text"],
+html[data-theme="dark"] input[type="password"],
+html[data-theme="dark"] input[type="email"],
+html[data-theme="dark"] input[type="number"],
+html[data-theme="dark"] input[type="date"],
+html[data-theme="dark"] input[type="time"],
+html[data-theme="dark"] input[type="search"],
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background: #263548 !important;
+  border-color: #334155 !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .form-select:focus,
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus {
+  border-color: #15803d !important;
+  box-shadow: 0 0 0 3px rgba(21,128,61,.2) !important;
+  background: #2d3f55 !important;
+}
+html[data-theme="dark"] .form-control::placeholder,
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: #475569 !important; }
+
+html[data-theme="dark"] .form-label,
+html[data-theme="dark"] label { color: #94a3b8 !important; }
+html[data-theme="dark"] .form-hint,
+html[data-theme="dark"] .hint  { color: #64748b !important; }
+
+/* Select option */
+html[data-theme="dark"] option {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   8. BUTTONS
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .btn-outline {
+  background: #263548 !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+html[data-theme="dark"] .btn-outline:hover {
+  border-color: #15803d !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .btn-edit-sm {
+  background: #0d2b1a !important;
+  border-color: #15803d40 !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .btn-edit-sm:hover {
+  background: #15803d !important;
+  color: #fff !important;
+}
+html[data-theme="dark"] .btn-ghost-si {
+  background: transparent !important;
+  border-color: #334155 !important;
+  color: #94a3b8 !important;
+}
+html[data-theme="dark"] .btn-ghost-si:hover {
+  border-color: #15803d !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .btn-burger { color: #f1f5f9 !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   9. BADGES
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .badge-green,
+html[data-theme="dark"] .badge-success,
+html[data-theme="dark"] .bg-green,
+html[data-theme="dark"] .badge-teal  { background: #0d2b1a !important; color: #86efac !important; border-color: #15803d50 !important; }
+
+html[data-theme="dark"] .badge-yellow,
+html[data-theme="dark"] .badge-warning,
+html[data-theme="dark"] .bg-amber    { background: #1c1505 !important; color: #fbbf24 !important; border-color: #92400e50 !important; }
+
+html[data-theme="dark"] .badge-red,
+html[data-theme="dark"] .badge-danger,
+html[data-theme="dark"] .bg-red      { background: #1c0505 !important; color: #f87171 !important; border-color: #991b1b50 !important; }
+
+html[data-theme="dark"] .badge-blue,
+html[data-theme="dark"] .badge-info,
+html[data-theme="dark"] .bg-blue     { background: #0d1f38 !important; color: #93c5fd !important; border-color: #1d4ed850 !important; }
+
+html[data-theme="dark"] .badge-gray,
+html[data-theme="dark"] .bg-slate    { background: #263548 !important; color: #94a3b8 !important; border-color: #33415550 !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   10. ALERTS
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .alert-ok,
+html[data-theme="dark"] .alert-success,
+html[data-theme="dark"] .alert-success-custom { background: #0d2b1a !important; color: #86efac !important; border-color: #15803d40 !important; }
+
+html[data-theme="dark"] .alert-err,
+html[data-theme="dark"] .alert-error,
+html[data-theme="dark"] .alert-error-custom,
+html[data-theme="dark"] .alert-danger  { background: #1c0505 !important; color: #f87171 !important; border-color: #991b1b40 !important; }
+
+html[data-theme="dark"] .alert-warning { background: #1c1505 !important; color: #fbbf24 !important; border-color: #92400e40 !important; }
+
+/* Bootstrap alert */
+html[data-theme="dark"] .alert { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+
+/* ══════════════════════════════════════════════════════════════
+   11. MODAL & DROPDOWN (Bootstrap)
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .modal-content {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f1f5f9;
+}
+html[data-theme="dark"] .modal-header { border-bottom-color: #334155 !important; }
+html[data-theme="dark"] .modal-footer { border-top-color: #334155 !important; }
+html[data-theme="dark"] .modal-title  { color: #f1f5f9 !important; }
+html[data-theme="dark"] .btn-close    { filter: invert(1); }
+
+html[data-theme="dark"] .dropdown-menu {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+html[data-theme="dark"] .dropdown-item { color: #e2e8f0 !important; }
+html[data-theme="dark"] .dropdown-item:hover {
+  background: #263548 !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .dropdown-divider { border-color: #334155 !important; }
+
+/* Notif dropdown */
+html[data-theme="dark"] #notifDropdown {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+html[data-theme="dark"] #notifDropdown > div { border-color: #334155 !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   12. TIMELINE
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .tl::before  { background: #334155; }
+html[data-theme="dark"] .tl-card     { background: #1e293b; border-color: #334155; }
+html[data-theme="dark"] .tl-card:hover { border-color: #15803d; }
+html[data-theme="dark"] .tl-body     { color: #cbd5e1; }
+html[data-theme="dark"] .tl-note     { background: #0d2b1a; border-left-color: #22c55e; color: #86efac; }
+html[data-theme="dark"] .tl-dot      { box-shadow: 0 0 0 2px #0f172a; }
+
+/* ══════════════════════════════════════════════════════════════
+   13. HERO / WELCOME BANNER — stays gradient, slight dim
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .welcome-banner { filter: brightness(.88); }
+
+/* ══════════════════════════════════════════════════════════════
+   14. FOOTER (siswa)
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .site-footer { background: #0a1323 !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   15. SCROLLBAR
+══════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] ::-webkit-scrollbar-track { background: #0f172a; }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #334155; }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ══════════════════════════════════════════════════════════════
+   16. MISC PAGE-SPECIFIC OVERRIDES
+══════════════════════════════════════════════════════════════ */
+/* Inline bg: white yang sering muncul di berbagai halaman */
+html[data-theme="dark"] [style*="background:#fff"],
+html[data-theme="dark"] [style*="background: #fff"],
+html[data-theme="dark"] [style*="background:white"],
+html[data-theme="dark"] [style*="background: white"] {
+  background: #1e293b !important;
+}
+html[data-theme="dark"] [style*="background:#f0fdf4"],
+html[data-theme="dark"] [style*="background: #f0fdf4"],
+html[data-theme="dark"] [style*="background:#f8fafc"],
+html[data-theme="dark"] [style*="background: #f8fafc"],
+html[data-theme="dark"] [style*="background:#f1f5f9"],
+html[data-theme="dark"] [style*="background: #f1f5f9"] {
+  background: #162032 !important;
+}
+/* Inline color: dark text */
+html[data-theme="dark"] [style*="color:#0f172a"],
+html[data-theme="dark"] [style*="color:#1e293b"],
+html[data-theme="dark"] [style*="color:#374151"] {
+  color: #e2e8f0 !important;
+}
+html[data-theme="dark"] [style*="color:#64748b"],
+html[data-theme="dark"] [style*="color:#94a3b8"] {
+  color: #64748b !important;
+}
+/* Border dark inline */
+html[data-theme="dark"] [style*="border:1px solid #e2e8f0"],
+html[data-theme="dark"] [style*="border: 1px solid #e2e8f0"],
+html[data-theme="dark"] [style*="border-bottom:1px solid #e2e8f0"],
+html[data-theme="dark"] [style*="border-bottom: 1px solid"] {
+  border-color: #334155 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   17. DARK MODE TOGGLE BUTTON
+══════════════════════════════════════════════════════════════ */
+.dm-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border, #e2e8f0);
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background .2s, border-color .2s, transform .2s;
+  flex-shrink: 0;
+  color: var(--text, #0f172a);
+  padding: 0;
+  line-height: 1;
+}
+.dm-toggle:hover {
+  background: rgba(21,128,61,.1);
+  border-color: #15803d;
+  transform: rotate(12deg);
+}
+html[data-theme="dark"] .dm-toggle {
+  border-color: #334155;
+  color: #f1f5f9;
+}
+html[data-theme="dark"] .dm-toggle:hover {
+  background: rgba(134,239,172,.1);
+  border-color: #86efac;
+}

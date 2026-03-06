@@ -1,0 +1,50 @@
+version: "3.9"
+
+# ═══════════════════════════════════════════════════════════════
+#  SiPrakerin — docker-compose (2 container: App + MySQL terpisah)
+#  Untuk versi ALL-IN-ONE (1 container), gunakan:
+#    docker build -f Dockerfile.allinone -t siprakerin .
+#    docker run -d -p 80:80 --name siprakerin siprakerin
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: siprakerin_app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=${DB_USER:-siprakerin}
+      - DB_PASS=${DB_PASS:-siprakerin123}
+      - DB_NAME=${DB_NAME:-db_prakerin}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/var/www/html/uploads
+
+  db:
+    image: mysql:8.0
+    container_name: siprakerin_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-db_prakerin}
+      MYSQL_USER: ${DB_USER:-siprakerin}
+      MYSQL_PASSWORD: ${DB_PASS:-siprakerin123}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-rootpassword123}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASS:-rootpassword123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
+  uploads_data:
